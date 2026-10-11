@@ -3,7 +3,7 @@ export default function Navbar() {
     <header className="h-16 bg-slate-900/50 backdrop-blur border-b border-slate-800 px-6 flex items-center justify-between">
       <div>
         <h1 className="text-lg font-semibold text-white">Products Management</h1>
-        <p className="text-xs text-slate-800">Manage your store inventory and items</p>
+        <p className="text-xs text-slate-400">Manage your store inventory and items</p>
       </div>
 
       <div className="flex items-center gap-4">
@@ -17,7 +17,7 @@ export default function Navbar() {
           </div>
           <div className="hidden sm:block text-left">
             <span className="block text-sm font-medium text-white leading-tight">Admin User</span>
-            <span className="block text-xs text-slate-800">admin@example.com</span>
+            <span className="block text-xs text-slate-400">admin@example.com</span>
           </div>
         </div>
       </div>
