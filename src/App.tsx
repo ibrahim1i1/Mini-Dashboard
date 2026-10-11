@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import ProductTable from './components/ProductTable';
 import type { Product, ProductsResponse } from './types/product';
 
 export default function App() {
@@ -35,10 +36,10 @@ export default function App() {
     <div className='flex min-h-screen bg-slate-900 text-slate-100'>
 
       <Sidebar />
-
+      
       <div className='flex-1 flex flex-col min-w-0'>
         <Navbar />
-
+        
         <main className='flex-1 p-8'>
           {loading && (
             <div className='flex flex-col items-center justify-center gap-3 p-12'>
@@ -52,7 +53,7 @@ export default function App() {
               {error}
             </div>
           )}
-
+          <ProductTable products={product} />
         </main>
       </div>
 
