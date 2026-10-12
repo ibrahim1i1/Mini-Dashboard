@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ProductTable from './components/ProductTable';
-import type { Product, ProductsResponse } from './types/product';
+import type { Product, ProductsResponse } from './types/Product';
 
 export default function App() {
   const [product, setProducts] = useState<Product[]>([]);
