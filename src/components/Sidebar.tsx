@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 export default function Sidebar() {
     return (
         <aside className="w-64 bg-slate-900/70 border-r border-slate-800 p-6 flex flex-col justify-between hidden md:flex">
@@ -10,18 +11,39 @@ export default function Sidebar() {
                         MINI <span className="text-blue-500">DASH</span>
                     </span>
                 </div>
+
                 <nav className="space-y-2">
-                    <button className="w-full bg-blue-600 flex items-center gap-3 px-4 py-2 rounded-xl text-white font-medium shadow-md shadow-blue-600/20 transition cursor-pointer hover:bg-blue-600/50">
+
+                    <NavLink
+                        className={({ isActive }) =>
+                            `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                            }`
+                        }
+                        to='/'
+                         >
                         <span>📦</span>
                         <span>Products</span>
-                    </button>
+                    </NavLink>
 
-                    <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
+                    <NavLink
+                        to='/analytics'
+                        className={({ isActive }) => `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                            : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+
+                            }
+                        `}
+                        >
                         <span>📈</span>
                         <span>Analytics</span>
-                    </button>
+                    </NavLink>
 
-                    <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
+                    <button
+                    title="Coming Soon"
+                        className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition opacity-60 cursor-not-allowed"
+                        >
                         <span>⚙️</span>
                         <span>Settings</span>
                     </button>
@@ -32,7 +54,6 @@ export default function Sidebar() {
                 <span>Verison 1.0.0</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
-
         </aside>
     );
 }
