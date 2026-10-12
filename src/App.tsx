@@ -47,15 +47,59 @@ export default function App() {
     return 0;
   });
 
+  const totalProducts = product.length;
+  const totalCategories = categories.filter((c) => c !== 'all').length;
+
+  const avgPrice = totalProducts > 0
+  ? (product.reduce((acc, curr) => acc + curr.price, 0) / totalProducts).toFixed(2)
+  : '0';
+
+  const lowStockCount = product.filter((item) => (item.stock ?? 0) < 10).length;
+
   return (
     <div className='flex min-h-screen bg-slate-900 text-slate-100'>
 
       <Sidebar />
 
+
       <div className='flex-1 flex flex-col min-w-0'>
         <Navbar />
 
         <main className='flex-1 p-8'>
+
+          <div>
+            <div className='bg-slate-950/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between'>
+              <span className='text-xs font-medium text-slate-400 uppercase tracking-wider'>Total products</span>
+              <div className='flex items-baseline justify-between mt-3'>
+                <span className='text-2xl font-bold text-white'>{totalProducts}</span>
+                <span className='text-xs text-blue-400 font-medium bg-blue-500/10 px-2 py-0.5 rounded-full'>Items</span>
+              </div>
+            </div>
+
+            <div className='bg-slate-950/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between'>
+              <span className='text-xs font-medium text-slate-400 uppercase tracking-wider'>Categories</span>
+              <div className='flex items-baseline justify-between mt-3'>
+                <span className='text-2xl font-bold text-white'>{totalCategories}</span>
+                <span className='text-xs text-purple-400 font-medium bg-purple-500/10 px-2 py-0.5 rounded-full'>Active</span>
+              </div>
+            </div>
+
+            <div className='bg-slate-950/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between'>
+              <span className='text-xs font-medium text-slate-400 uppercase tracking-wider'>Avg Price</span>
+              <div className='flex items-baseline justify-between mt-3'>
+                <span className='text-2xl font-bold text-white'>{avgPrice}</span>
+                <span className='text-xs text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full'>USD</span>
+              </div>
+            </div>
+
+            <div className='bg-slate-950/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between'>
+              <span className='text-xs font-medium text-slate-400 uppercase tracking-wider'>Low Stock</span>
+              <div className='flex items-baseline justify-between mt-3'>
+                <span className='text-2xl font-bold text-rose-400'>{lowStockCount}</span>
+                <span className='text-xs text-rose-400 font-medium bg-rose-500/10 px-2 py-0.5 rounded-full'>&lt; 10 left</span>
+              </div>
+            </div>
+          </div>
           <div className='flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between bg-slate-900/60 p-4 rounded-2xl border border-slate-800 mb-2'>
             <div className='relative flex-1'>
               <span className='absolute inset-y-0 left-3 flex items-center text-slate-400'>
