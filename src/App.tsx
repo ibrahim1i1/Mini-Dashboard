@@ -11,6 +11,7 @@ export default function App() {
 
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('default');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,10 +37,14 @@ export default function App() {
 
   const categories = ['all', ...Array.from(new Set(product.map((p) => p.category)))];
 
-  const filteredProducts = product.filter((item) => {
+  const processedProducts = product.filter((item) => {
     const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
+  }).sort((a, b) => {
+    if (sortBy === 'low-to-high') return a.price - b.price;
+    if (sortBy === 'high-to-low') return b.price - a.price;
+    return 0;
   });
 
   return (
@@ -63,18 +68,32 @@ export default function App() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
+            <div className='flex gap-3 justify-center'>
+              <div className='w-40'>
+                <select
+                  className='w-full bg-slate-950 border text-sm border-slate-800 rounded-xl px-4 py-2.5  text-slate-200 focus:outline-none focus:border-blue-500 transition cursor-pointer capitalize'
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                >
+                  {categories.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat === 'all' ? 'All categories' : cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div className='sm:w-56'>
-              <select
-              className='w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition cursor-pointer capitalize'
-              value={selectedCategory}
-              >
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat === 'all' ? 'All categories' : cat}
-                  </option>
-                ))}
-              </select>
+              <div className='w-40'>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className='w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition cursor-pointer'
+                >
+                  <option value="default">Default Order</option>
+                  <option value="low-to-high">Price: Low to High</option>
+                  <option value="high-to-low">Price: high to Low</option>
+                </select>
+              </div>
             </div>
           </div>
           {loading && (
@@ -89,7 +108,7 @@ export default function App() {
               {error}
             </div>
           )}
-          <ProductTable products={filteredProducts} />
+          <ProductTable products={processedProducts} />
         </main>
       </div>
 
