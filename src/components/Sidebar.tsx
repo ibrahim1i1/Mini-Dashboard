@@ -1,59 +1,134 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+
+
 export default function Sidebar() {
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     return (
-        <aside className="w-64 bg-slate-900/70 border-r border-slate-800 p-6 flex flex-col justify-between hidden md:flex">
-            <div>
-                <div className="flex items-center gap-3 mb-8">
-                    <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
-                        📊
+        <aside>
+
+            <button
+                className="flex flex-col gap-1.5 m-4 md:hidden"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+                <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            </button>
+
+            <div className="w-64 bg-slate-900/70 border-r border-slate-800 p-6 flex flex-col justify-between hidden md:flex">
+
+                <div>
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
+                            📊
+                        </div>
+                        <span className="text-xl tracking-wide font-bold text-white">
+                            MINI <span className="text-blue-500">DASH</span>
+                        </span>
                     </div>
-                    <span className="text-xl tracking-wide font-bold text-white">
-                        MINI <span className="text-blue-500">DASH</span>
-                    </span>
-                </div>
 
-                <nav className="space-y-2">
+                    <nav className="space-y-2">
 
-                    <NavLink
-                        className={({ isActive }) =>
-                            `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                        <NavLink
+                            className={({ isActive }) =>
+                                `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                                }`
+                            }
+                            to='/'
+                        >
+                            <span>📦</span>
+                            <span>Products</span>
+                        </NavLink>
+
+                        <NavLink
+                            to='/analytics'
+                            className={({ isActive }) => `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
                                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
                                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                            }`
-                        }
-                        to='/'
-                         >
-                        <span>📦</span>
-                        <span>Products</span>
-                    </NavLink>
 
-                    <NavLink
-                        to='/analytics'
-                        className={({ isActive }) => `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
-                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
-                            : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-
-                            }
+                                }
                         `}
                         >
-                        <span>📈</span>
-                        <span>Analytics</span>
-                    </NavLink>
+                            <span>📈</span>
+                            <span>Analytics</span>
+                        </NavLink>
 
-                    <button
-                    title="Coming Soon"
-                        className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition opacity-60 cursor-not-allowed"
+                        <button
+                            title="Coming Soon"
+                            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition opacity-60 cursor-not-allowed"
                         >
-                        <span>⚙️</span>
-                        <span>Settings</span>
-                    </button>
-                </nav>
-            </div>
+                            <span>⚙️</span>
+                            <span>Settings</span>
+                        </button>
+                    </nav>
+                </div>
 
-            <div className="pt-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center">
-                <span>Verison 1.0.0</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <div className="pt-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center">
+                    <span>Verison 1.0.0</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                </div>
             </div>
+            {isMenuOpen && (
+                <div className="bg-slate-900 w-full fixed inset-0 p-6 min-h-screen z-30 flex flex-col justify-between">
+                    <div>
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
+                                📊
+                            </div>
+                            <span className="text-xl tracking-wide font-bold text-white">
+                                MINI <span className="text-blue-500">DASH</span>
+                            </span>
+                        </div>
+
+                        <nav className="space-y-2">
+
+                            <NavLink
+                                onClick={() => setIsMenuOpen(false)}
+                                className={({ isActive }) =>
+                                    `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                                    }`
+                                }
+                                to='/'
+                            >
+                                <span>📦</span>
+                                <span>Products</span>
+                            </NavLink>
+
+                            <NavLink
+                            onClick={() => setIsMenuOpen(false)}
+                                to='/analytics'
+                                className={({ isActive }) => `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+
+                                    }
+                        `}
+                            >
+                                <span>📈</span>
+                                <span>Analytics</span>
+                            </NavLink>
+
+                            <button
+                                title="Coming Soon"
+                                className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition opacity-60 cursor-not-allowed"
+                            >
+                                <span>⚙️</span>
+                                <span>Settings</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center">
+                        <span>Verison 1.0.0</span>
+                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    </div>
+                </div>
+            )}
         </aside>
     );
 }
