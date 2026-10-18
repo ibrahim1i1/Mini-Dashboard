@@ -6,7 +6,7 @@ A fast, responsive, and modern Admin Dashboard built with **React**, **TypeScrip
 
 ## 🚀 Live Demo
 
-- **Live URL:** [https://mini-dashboard-3pp1.vercel.app/](https://mini-dashboard-3pp1.vercel.app/) *(ضع رابط مشروعك على Vercel هنا)*
+- **Live URL:** [https://mini-dashboard-3pp1.vercel.app/](https://mini-dashboard-3pp1.vercel.app/)
 
 ---
 
