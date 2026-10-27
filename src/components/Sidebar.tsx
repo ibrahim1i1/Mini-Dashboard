@@ -1,20 +1,13 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-
-export default function Sidebar() {
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+interface SidebarProps {
+    isMenuOpen: boolean;
+    setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export default function Sidebar({isMenuOpen, setIsMenuOpen}: SidebarProps) {
     return (
         <aside>
 
-            <button
-                className="flex flex-col gap-1.5 m-4 md:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-                <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-                <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </button>
 
             <div className="w-64 bg-slate-900/70 border-r border-slate-800 p-6 flex flex-col justify-between hidden md:flex">
 
@@ -100,7 +93,7 @@ export default function Sidebar() {
                             </NavLink>
 
                             <NavLink
-                            onClick={() => setIsMenuOpen(false)}
+                                onClick={() => setIsMenuOpen(false)}
                                 to='/analytics'
                                 className={({ isActive }) => `w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition ${isActive
                                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'

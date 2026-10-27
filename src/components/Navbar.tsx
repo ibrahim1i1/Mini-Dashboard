@@ -1,6 +1,19 @@
-export default function Navbar() {
+interface NavbarProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export default function Navbar({isMenuOpen, setIsMenuOpen}: NavbarProps) {
   return (
-    <header className="h-16 bg-slate-900/50 backdrop-blur border-b border-slate-800 px-6 flex items-center justify-between">
+    <header className="h-16 bg-slate-900/50 backdrop-blur border-b border-slate-800 px-4 flex items-center justify-between">
+      <button
+        className="flex flex-col gap-1.5 m-4 md:hidden"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+        <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+        <span className={`w-7 h-0.5 bg-current duration-300 transition-transform rounded-full ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+      </button>
+
       <div>
         <h1 className="text-lg font-semibold text-white">Products Management</h1>
         <p className="text-xs text-slate-400">Manage your store inventory and items</p>

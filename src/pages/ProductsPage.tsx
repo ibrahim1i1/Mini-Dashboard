@@ -57,8 +57,8 @@ export default function ProductsPage() {
   return (
     <div className='flex min-h-screen bg-slate-900 text-slate-100'>
       <div className='flex-1 flex flex-col min-w-0'>
-        <main className='flex-1 p-8'>
-          <div>
+        <main className='flex-1 p-4'>
+          <div className='grid grid-cols-2'>
             <div className='bg-slate-950/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between'>
               <span className='text-xs font-medium text-slate-400 uppercase tracking-wider'>Total products</span>
               <div className='flex items-baseline justify-between mt-3'>
