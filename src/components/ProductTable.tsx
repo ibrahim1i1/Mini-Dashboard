@@ -25,16 +25,18 @@ export default function ProductTable({ products }: ProductTableProps) {
                         <div className="flex items-center justify-between border-t border-slate-800 py-2">
                             <span className="text-emerald-400 font-bold">{item.price} $</span>
                             <span
-                            className={`text-[10px] font-semibold px-1.5 py-0.5 border rounded ${item.stock > 10
-                                ? 'text-blue-400 bg-blue-950/40'
-                                : 'text-amber-400 bg-amber-950/40'
-                            }`}
+                                className={`text-[10px] font-semibold px-1.5 py-0.5 border rounded ${item.stock > 10
+                                    ? 'text-blue-400 bg-blue-950/40'
+                                    : 'text-amber-400 bg-amber-950/40'
+                                    }`}
                             >
                                 {item.stock} left
                             </span>
                         </div>
 
-                        <button className="w-full bg-slate-700 rounded-xl font-bold py-1.5 hover:bg-slate-500 active:scale-95 transition-all">
+                        <button className="opacity-40 cursor-not-allowed w-full bg-slate-700 rounded-xl font-bold py-1.5 hover:bg-slate-500 active:scale-95 transition-all"
+                            title="Coming Soon"
+                        >
                             Edit
                         </button>
                     </div>
@@ -83,7 +85,9 @@ export default function ProductTable({ products }: ProductTableProps) {
                                 </td>
 
                                 <td className="px-6 py-4 text-right">
-                                    <button className="px-3 py-1 rounded-lg text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+                                    <button className="opacity-40 cursor-not-allowed px-3 py-1 rounded-lg text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
+                                    title="Coming Soon"
+                                    >
                                         Edit
                                     </button>
                                 </td>
